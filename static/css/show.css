@@ -1,0 +1,27 @@
+@import url("comment.css");
+
+.box{
+    padding-left:10px;
+    padding:20px 0;
+}
+.box h2{
+    color:#333;
+    font-size:24px;
+    font-weight:500;
+}
+.box p{
+    color:#333
+}
+
+.button{
+    display: block;
+    width:107px;
+    height:42px;
+    color:#fff;
+    background-color:#00AAEE;
+    border:0;
+    border-radius: 5px;
+    margin-top:20px;
+    text-align: center;
+    line-height:42px;
+}

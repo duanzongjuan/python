@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    <script src="../static/js/jquery.js"></script>
+</head>
+<body>
+    <div class="loginBox">
+        <h1>登录</h1>
+        <form action="javascript:;" method="POST">
+            <div class="box">
+                <label for="username">
+                    <img src="../static/img/username.png" alt="">
+                </label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="box">
+                <label for="password">
+                    <img src="../static/img/password.png" alt="">
+                </label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="box">
+                <button id="button">登录</button>
+            </div>
+            <div class="box1">
+                <a  href="regin">点击注册</a>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    //$("#button").on("click",function(){})
+    $("#button").click(function(){
+       let username = $("#username").val() //let块级,es5
+       let password = $("#password").val()
+       if(username.length >= 5 && password.length >= 5) {
+           $.ajax({
+               url:"/checkLogin",
+               data:{"username":username,"password":password},
+               type:"post",
+               success:function(e) {
+                   if(e == "ok") {
+                       alert("登录成功")
+                       $(window).attr("location","/")  //跳转首页
+                   } else if(e == "no") {
+                       alert("登录失败,请重新登录")
+                   }
+               }
+           })
+       }
+    })
+
+    $("#username").on("input prototychange",aa)
+    function aa(){
+       let len = $(this).val().length
+       if(len >= 5) {
+           $(this).parent().css("border","1px solid green")
+       } else {
+        $(this).parent().css("border","1px solid red")
+       }
+    }
+
+    $("#password").on("input prototychange",aa)
+</script>
+</html>

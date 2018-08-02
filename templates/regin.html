@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/regin.css">
+    <script src="../static/js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="loginBox">
+        <h1>注册</h1>
+        <form action="javascript:;" method="POST">
+            <div class="box">
+                <label for="username">
+                    <img src="../static/img/username.png" alt="">
+                </label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="box">
+                <label for="password">
+                    <img src="../static/img/password.png" alt="">
+                </label>
+                <input type="password" id="password1" name="password1">
+            </div>
+            <div class="box">
+                <label for="password">
+                    <img src="../static/img/password.png" alt="">
+                </label>
+                <input type="password" id="password2" name="password2">
+            </div>
+            <div class="box">
+                <button id="button">注册</button>
+            </div>
+            <div class="box1">
+                <a href="login">已有账号，点击登录</a>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    $("#username").on("input prototychange",aa)
+    function aa() {
+      let  len = $(this).val().length
+      if (len >= 5) {
+          $(this).parent().css("border","1px solid green")
+      } else {
+          $(this).parent().css("border","1px solid red")
+      }
+    }
+
+    $("#password1").on("input prototychange",aa)
+    
+    $("#password2").on("input prototychange",aa)
+
+    $("#button").on("click",function(){
+        let username = $("#username").val()
+        let password1 = $("#password1").val()
+        let password2 = $("#password2").val()
+        if(username.length >= 5 && password1.length >= 5 && password2.length >= 5) {
+            if(password1 == password2) {
+                $.ajax({
+                    url:"/addUser",
+                    data:{"username":username,"password":password1},
+                    type:"post",
+                    success:function(e) {
+                        if(e == "ok") {
+                            alert("注册成功")
+                            $(window).attr("location","/login")  //跳转首页
+                        } else if(e == "no") {
+                            alert("注册失败,请重新注册")
+                        } else if(e == "has") {
+                            alert("用户名已存在,请重新注册!")
+                        }
+                    }
+                })
+            }
+        }
+    })
+</script>
+</html>

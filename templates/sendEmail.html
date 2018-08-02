@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/sendEmail.css">
+</head>
+<body>
+    <header>发送邮件</header>
+    <div class="main">
+        <form action="/put" method="post" enctype="multipart/form-data">
+            <div class="box">
+                <label for="email">接收方:</label>
+                <input type="text" name="email" id="email">
+                <br>
+                <br>
+                <input type="file" name="file">
+                <br>
+                <button>提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
